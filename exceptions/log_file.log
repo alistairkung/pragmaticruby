@@ -1,0 +1,5 @@
+# Logfile created on 2017-11-20 12:39:47 +0000 by logger.rb/56438
+D, [2017-11-20T12:39:52.765524 #31552] DEBUG -- : Numerator: 10, Denominator: 2
+D, [2017-11-20T12:40:01.928294 #31552] DEBUG -- : Numerator: 10, Denominator: 0
+E, [2017-11-20T12:40:01.928511 #31552] ERROR -- : error in division!: divided by 0
+E, [2017-11-20T12:44:32.536252 #31728] ERROR -- : error in division!: divided by 0
