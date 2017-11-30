@@ -1,5 +1,3 @@
-
-
 sum_of_fib = Enumerator.new do |y|
   fib = Enumerator.new do |y|
     i1 = i2 = 1
@@ -12,15 +10,5 @@ sum_of_fib = Enumerator.new do |y|
     sum += i
     y.yield sum
     sum
-  end
-end
-
-def incrementing_sum(arr)
-  Enumerator.new do |y|
-    arr.reduce(0) do |sum, i|
-      sum += i
-      y << sum
-      sum
-    end
   end
 end
