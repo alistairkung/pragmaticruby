@@ -1,7 +1,7 @@
 # This was an exercise demonstrating different ways to read a file via blocks/procs/lambdas
 
 #Using yield:
-def read(file, &block)
+def read(file)
   File.open(file, 'r') { |f| yield f}
 end
 #File.open creates a file object which is passed to the block and yielded
