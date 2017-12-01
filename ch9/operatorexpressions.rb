@@ -1,3 +1,11 @@
+#Operator Expressions
+
+a, b, c = 1, 2, 3
+a * b + c # => 5 in essence this is the same as the following
+(a.*(b)).+(c) # => 5
+
+
+#Operator expressions can be written for composed classes:
 class ScoreKeeper
   def initialize
     @total_score = @count = 0
