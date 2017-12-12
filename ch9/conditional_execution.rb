@@ -17,9 +17,22 @@ true && 100 % 2 == 0 # => true
 nil || 99 # => 99
 false || 99 # => 99
 "cat" || 99 # => "cat"
-false || 100 % 2 == 9 # => true
+false || 100 % 2 == 0 # => true
 
 #||=
 ##Assigns a value to a variable, only if that variable is not already sets
 
 var ||= "default value"
+
+#demonstration of != and == being defined. if only == is defined, it will be used to perform both != and == comparisons
+class T
+  def ==(other)
+    puts "comparing self == #{other}"
+    other == "value"
+  end
+  def !=(other)
+    puts "comparing self != #{other}"
+    other != "value"
+  end
+end
+

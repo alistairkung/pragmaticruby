@@ -32,3 +32,25 @@ a, *, b = 1, 2, 3, 4, 5, 6 #=> a = 1, b = 6
 a, (b, c), d = 1, 2, 3, 4 #=> a = 1, b = 2, c = nil, d = 3
 a, (b, c), d = 1, [2, 3, 4], 5 #=> a = 1, b = 2, c = 3, d = 5
 a, (b, *c), d = 1, [2, 3, 4], 5 #=> a = 1, b = 2, c = [3, 4], d = 5
+
+#The following demonstrates assignment of writable object attributes:
+class ProjectList
+  def initialize
+    @projects = []
+  end
+  def projects=(list)
+    @projects = list.map(&:upcase)
+  end
+  def [](offset)
+    @projects[offset] #[] method is defined for the class, to enable list[1] (rather than list.projects[1])
+  end
+end
+#The value of the assignment is always the value of the parameter; the return value is discarded:
+class Test
+  def val=(val)
+    @val=val
+    return 99
+  end
+end
+## t = Test.new
+## result = (t.val = 2) #=> 2
