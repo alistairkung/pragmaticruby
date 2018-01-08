@@ -43,4 +43,36 @@ describe TennisScorer do
     ts.give_point_to(:receiver)
     expect(ts.score).to eq "L-W"
   end
+
+  it "should be Deuce after each wins three points" do
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:server)
+    ts.give_point_to(:server)
+    ts.give_point_to(:server)
+    expect(ts.score).to eq "DEUCE"
+  end
+
+  it "should be A-Server after each wins three points and the server gets one more" do
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:server)
+    ts.give_point_to(:server)
+    ts.give_point_to(:server)
+    ts.give_point_to(:server)
+    expect(ts.score).to eq "A-Server"
+  end
+
+  it "should be A-Receiver after each wins three points and the receiver gets one more" do
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:receiver)
+    ts.give_point_to(:server)
+    ts.give_point_to(:server)
+    ts.give_point_to(:server)
+    ts.give_point_to(:receiver)
+    expect(ts.score).to eq "A-Receiver"
+  end
 end

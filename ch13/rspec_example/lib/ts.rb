@@ -8,12 +8,22 @@ class TennisScorer
   end
 
   def score
-    if @score[:server] == 4
-      "W-L"
-    elsif @score[:receiver] == 4
-      "L-W"
+    if deuce?
+      "DEUCE"
     else
-    "#{TENNIS_SCORE[@score[:server]]}-#{TENNIS_SCORE[@score[:receiver]]}"
+      if @score[:server] + @score[:receiver] >= 6 && @score[:server] - @score[:receiver] == 1
+        "A-Server"
+      elsif @score[:server] + @score[:receiver] >= 6 && @score[:server] - @score[:receiver] == -1
+        "A-Receiver"
+      else
+        if @score[:server] == 4
+          "W-L"
+        elsif @score[:receiver] == 4
+          "L-W"
+        else
+        "#{TENNIS_SCORE[@score[:server]]}-#{TENNIS_SCORE[@score[:receiver]]}"
+        end
+      end
     end
   end
 
@@ -22,4 +32,9 @@ class TennisScorer
     fail "Unknown player #{player}" unless other
     @score[player] += 1
   end
+
+  def deuce?
+    @score[:server] + @score[:receiver] >= 6 &&  @score[:server] - @score[:receiver] == 0
+  end
+
 end
