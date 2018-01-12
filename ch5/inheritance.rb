@@ -6,13 +6,17 @@ class Animal
     @species = species
   end
 
-  def eat
-    puts "#{species} eats some food"
+  def eat(food)
+    puts "#{species} eats some #{food}"
   end
 end
 
 class Cow < Animal
   def initialize
     super("Cow")
+  end
+
+  def eat
+    super("Grass")
   end
 end

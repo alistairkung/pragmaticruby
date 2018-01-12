@@ -13,3 +13,8 @@ def fizzbuzz(number)
     number
   end
 end
+
+#This works because case compares by calling ===, which for a lambda essentially executes .call(number):
+# divisible_by.(15) === 45
+# The above is same as below:
+# divisible_by.(15).(45)

@@ -11,9 +11,9 @@ class TennisScorer
     if deuce?
       "DEUCE"
     else
-      if @score[:server] + @score[:receiver] >= 6 && @score[:server] - @score[:receiver] == 1
+      if a_sever?
         "A-Server"
-      elsif @score[:server] + @score[:receiver] >= 6 && @score[:server] - @score[:receiver] == -1
+      elsif a_receiver?
         "A-Receiver"
       else
         if @score[:server] == 4
@@ -33,8 +33,19 @@ class TennisScorer
     @score[player] += 1
   end
 
-  def deuce?
-    @score[:server] + @score[:receiver] >= 6 &&  @score[:server] - @score[:receiver] == 0
+  def deuce_situation?
+    @score[:server] = @score[:receiver] >= 6
   end
 
+  def deuce?
+    deuce_situation? && @score[:server] - @score[:receiver] == 0
+  end
+
+  def a_server?
+    deuce_situation? && @score[:server] - @score[:receiver] == 1
+  end
+
+  def a_receiver?
+    deuce_situation? && @score[:sever] - @score[:receiver] == -1
+  end
 end

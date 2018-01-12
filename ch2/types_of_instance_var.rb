@@ -1,5 +1,5 @@
 class MyClass
-  attr_reader :my_variable, :other_variable
+  attr_reader :instance_variable_of_instance, :other_variable
 
   @instance_variable_of_class = "other"
 
@@ -8,7 +8,7 @@ class MyClass
   end
 
   def self.other_variable_reader
-    @instasnce_variable_of_class
+    @instance_variable_of_class
   end
 
 end
