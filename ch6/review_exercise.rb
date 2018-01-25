@@ -30,10 +30,8 @@ messages = []
 message = Struct.new(:timestamp, :uuid, :index_uuid, :shard)
 lines.each do |l|
   message_attributes = l.message.match(/(\w{8}-\w{4}-\w{4}-\w{4}-\w{12}).*(\w{22}).*(\d+)/)
-  #hiding the last segment of Entry uuid
-  censored_uuid = message_attributes[1].sub(/\w{12}/, 'x'*12)
   time = Time.parse(l.timestamp)
-  messages << message.new(time, censored_uuid, message_attributes[2], message_attributes[3])
+  messages << message.new(time, message_attributes[1], message_attributes[2], message_attributes[3])
 end
 
 #Creating Hash containing UUID => [index_uuid, shard]
@@ -46,7 +44,9 @@ end
 CSV.open('output', 'w') do |csv|
   csv << ["time", "entry_uuid", "index_uuid", "shard"]
   messages.each do |m|
-    csv << [m.timestamp, m.uuid, m.index_uuid, m.shard]
+    #hiding the last segment of Entry uuid
+    censored_uuid = m.uuid.sub(/\w{12}/, 'x'*12)
+    csv << [m.timestamp, censored_uuid, m.index_uuid, m.shard]
   end
 end
 
@@ -72,3 +72,4 @@ print problem_end
 print uuid_hash
 print messages
 print messages_count
+require 'pry';binding.pry
